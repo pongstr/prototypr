@@ -1,0 +1,21 @@
+{
+  "short_name": "ghosthunter",
+  "name": "ghosthunter",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "tile.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#fafafa",
+  "theme_color": "#fafafa",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,0 +1,21 @@
+@@include('./includes/header.html', {
+  "site_title": "Prototypr Boilerplate",
+  "page_title": "Offline",
+  "description": "Looks like your device is offline. Just chuck it!"
+})
+
+<div class="d-flex flex-row justify-content-center align-items-center bg-light" style="height: 100%; overflow: hidden;">
+  <div class="container text-center" style="max-width: 740px;">
+    <svg class="phaseout-icon mb-4" style="width: 100px; height: 100px;">
+      <use xlink:href="/img/feather-sprite.svg#wifi-off"></use>
+    </svg>
+
+    <h1 class="font-weight-light">No Network Connection</h1>
+    <span class="d-block">
+      The app can't seem to connect to our network, <br>
+      your device might be offline or has limited access to the internet.
+    </span>
+  </div>
+</div>
+
+@@include('./includes/footer.html')
