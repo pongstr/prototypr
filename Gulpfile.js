@@ -25,7 +25,7 @@ const config = {
   ],
   js: [
     './src/js/**/*.js',
-    '!./src/js/wp-worker.js'
+    '!./src/js/worker.js'
   ],
   assets: './src/**/*.{ico,jpg,php,png,pot,svg,txt,webmanifest}',
   html: './src/**/*.html',
@@ -63,10 +63,10 @@ const css = function (done) {
   const { css, dist } = config
   const options = {
     outputStyle: 'expanded',
-    indentedSyntax: true,
+    // indentedSyntax: true,
     includePaths: [
       './src/scss',
-      'node_modules/bootstrap'
+      'node_modules/bootstrap/scss'
     ]
   }
   src(css)
@@ -94,8 +94,8 @@ const css = function (done) {
 const cssmin = function (done) {
   const { css, dist } = config
   const options = {
-    outputStyle: 'compressed',
-    indentedSyntax: true,
+    outputStyle: 'expanded',
+    // indentedSyntax: true,
     includePaths: [
       './src/scss',
       'node_modules/bootstrap/scss'

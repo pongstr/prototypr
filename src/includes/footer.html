@@ -5,11 +5,11 @@
       if ('serviceWorker' in navigator) {
         // Use the window load event to keep the page load performant
         window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/wp-worker.js', { scope: '/' })
+          navigator.serviceWorker.register('/worker.js', { scope: '/' })
         });
       }
     })();
   </script>
-  <script async defer src="/js/wp-theme.js"></script>
+  <script async defer src="/js/app.main.js"></script>
 </body>
 </html>
