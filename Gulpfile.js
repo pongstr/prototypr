@@ -1,3 +1,4 @@
+const pkg = require('./package.json')
 const {
   dest,
   src,
@@ -5,35 +6,28 @@ const {
   watch
 } = require('gulp')
 
-const cleanup = require('del')
-const srcmap = require('gulp-sourcemaps')
-const sass = require('gulp-sass')
-const eslint = require('gulp-eslint')
-const commnt = require('gulp-header-comment')
-const webpack = require('webpack-stream')
-const include = require('gulp-file-include')
+const {
+  gulpConfig,
+  gulpFilters,
+  webpackConfig
+} = require('./utils')
+
+const cleanup     = require('del')
+const srcmap      = require('gulp-sourcemaps')
+const sass        = require('gulp-sass')
+const eslint      = require('gulp-eslint')
+const commnt      = require('gulp-header-comment')
+const webpack     = require('webpack-stream')
+const context     = require('gulp-data')
+const nunjucks    = require('gulp-nunjucks')
 const browserSync = require('browser-sync').create()
-const webpackConfig = require('./webpack.config.js')
 
 sass.compiler = require('node-sass')
 
-const config = {
-  base: './src',
-  dist: process.env.DIST || './dist',
-  css: [
-    './src/scss/**/*.{sass,scss}'
-  ],
-  js: [
-    './src/js/**/*.js',
-    '!./src/js/worker.js'
-  ],
-  assets: './src/**/*.{ico,jpg,php,png,pot,svg,txt,webmanifest}',
-  html: './src/**/*.html',
-  worker: './src/js/worker.js'
-}
+const config  = gulpConfig
+const filters = gulpFilters
 
 const theme = `
-
 <%= pkg.name %> - <%= pkg.version %>
 <%= pkg.description %>
 <%= pkg.author %> - https://pongstr.io/
@@ -63,7 +57,6 @@ const css = function (done) {
   const { css, dist } = config
   const options = {
     outputStyle: 'expanded',
-    // indentedSyntax: true,
     includePaths: [
       './src/scss',
       'node_modules/bootstrap/scss'
@@ -95,7 +88,6 @@ const cssmin = function (done) {
   const { css, dist } = config
   const options = {
     outputStyle: 'expanded',
-    // indentedSyntax: true,
     includePaths: [
       './src/scss',
       'node_modules/bootstrap/scss'
@@ -206,15 +198,12 @@ const worker = function (done) {
  * ```
  */
 const html = function (done) {
-  const { dist, html, base } = config
-  src(html, { base })
-    .pipe(include({
-      prefix: '@@',
-      basePath: base,
-      context: {
-        env: process.env.NODE_ENV || 'development'
-      }
-    }))
+  const { dist, html } = config
+  src(html)
+    .pipe(context(() => ({
+      siteTitle: pkg.name, siteDescription: pkg.description
+    })))
+    .pipe(nunjucks.compile({ filters }))
     .pipe(dest(dist))
   return done()
 }

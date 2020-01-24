@@ -1,9 +1,6 @@
-@@include('./includes/header.html', {
-  "site_title": "Prototypr Boilerplate",
-  "page_title": "Home",
-  "description": "a home prototype to test layout + interactions."
-})
+{% set pageTitle = "Home Landing" %}
+{% extends "templates/default.html" %}
 
-
-
-@@include('./includes/footer.html')
+{% block content %}
+  Hello! How are you?!
+{% endblock %}

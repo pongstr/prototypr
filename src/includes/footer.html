@@ -1,15 +1,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-  <script>
-    ;(function(d) {
-      if ('serviceWorker' in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/worker.js', { scope: '/' })
-        });
-      }
-    })();
-  </script>
   <script async defer src="/js/app.main.js"></script>
 </body>
 </html>
