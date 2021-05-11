@@ -43,7 +43,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "jest": "^24.9.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "node-fetch": "^2.6.1",
     "node-sass": "^4.13.1",
     "webpack": "^4.41.2",
